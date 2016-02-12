@@ -6,11 +6,10 @@ using namespace std;
 #include <algorithm>
 #include "time.h"
 #include <new>
-//#include <cstdio>
-//#include <cstdlib>
-//#include <cstring>
-//#include "lib.h"
-
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include "../../ComputationalPhysicsMSU/doc/Programs/LecturePrograms/programs/cppLibrary/lib.h"
 
 int main()
 {
@@ -109,10 +108,10 @@ int main()
     for(i=0 ; i < N ; i++) {
         b[i]=h*h*100*exp(-10*h*i);
     }
-//    // LU decompose the matrix
-//    ludcmp(Z,N,indx,&d);
-//    // Then backward substitution
-//    lubksb(Z, N, indx, b);
+    // LU decompose the matrix
+    ludcmp(Z,N,indx,&d);
+    // Then backward substitution
+    lubksb(Z, N, indx, b);
 
     // Free space
     delete [] b;
