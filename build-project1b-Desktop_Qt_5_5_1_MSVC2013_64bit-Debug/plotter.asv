@@ -1,0 +1,12 @@
+yN10 = csvread('N10.txt');
+yN100 = csvread('N100.txt');
+yN1000 = csvread('N1000.txt');
+yN10000 = csvread('N10000.txt');
+
+x10 = linspace(0,1,10);
+x100 = linspace(0,1,100);
+x1000 = linspace(0,1,1000);
+x10000 = linspace(0,1,10000);
+x100000 = linspace(0,1,100000);
+
+yactual = 1-(1-exp(-10))*x-exp(-10*x);

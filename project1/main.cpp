@@ -3,28 +3,19 @@ using namespace std;
 #include <iostream>
 #include <cmath>
 #include <fstream>
-#include <algorithm>
+#include <string>
 #include "time.h"
-#include <new>
-//#include <cstdio>
-//#include <cstdlib>
-//#include <cstring>
-//#include "lib.h"
-
+#include "../../ComputationalPhysicsMSU/doc/Programs/LecturePrograms/programs/cppLibrary/lib.h"
 
 int main()
 {
     clock_t start_alg, finish_alg;
-    cout << "Hellote" << endl;
-    int N;
-    int i;
-    int j;
-
+    cout << "N?" << endl; //size of matrix
+    int N, i, j;
     double h;
     cin >> N;
     double n = N;
     h = 1/(n+1);
-    cout << h << endl;
     double *A = new double[N];
     // initialize A array, representing diagonal of A, all elements = 2
     for(i=0 ; i < N ; i++) {
@@ -37,13 +28,9 @@ int main()
     }
 
     start_alg=clock();
-    cout << "Start" << clock() << endl;
     // forward substitution
     for(i=1 ; i < N ; i++) {
-        //cout << "A[i-1]" << A[i-1] << "A[i]" <<A[i]<<endl;
         A[i]=A[i]-(1/A[i-1]);
-        //cout << A[i]<< endl;
-
         B[i]=B[i]+B[i-1]/A[i-1];
     }
 
@@ -54,12 +41,12 @@ int main()
         X[N-1-i]=(B[N-1-i]+X[N-i])/A[N-1-i];
     }
     finish_alg=clock();
-    cout << "Finish" << clock() << endl;
 
     double *E = new double[N];
-    double u;
-    double x;
+    double u, x;
     double maxerror = 0.0;
+
+    //Finding error at each point, and maximum error
     for(i=1 ; i < N ; i++) {
         x = i*h;
         u = 1 - (1 - exp(-10))*x - exp(-10*x);
@@ -67,18 +54,21 @@ int main()
         if (E[i]>maxerror){maxerror = E[i];}
     }
 
-    cout << "Max Error" << maxerror << endl;
+    cout << "Max Error: " << maxerror << endl;
 
-    ofstream myfile ("example.txt");
+    //write results to output file
+    std::string N_str = std::to_string(N);
+    std::string filename = "N" + N_str + ".txt";
+    ofstream myfile (filename);
     if (myfile.is_open())
       {
         for(int count = 0; count < N; count ++){
-            myfile << X[count] << " " << E[count] << "\n" ;
+            myfile << X[count] << "\n" ;
         }
         myfile.close();
       }
 
-    cout << "time" << ((finish_alg-start_alg)/CLOCKS_PER_SEC)<<endl;
+    cout << "Time Alg: " << ((finish_alg-start_alg)/CLOCKS_PER_SEC)<<endl;
 
     delete [] A; delete [] B; delete [] X; delete [] E;
 
@@ -109,10 +99,16 @@ int main()
     for(i=0 ; i < N ; i++) {
         b[i]=h*h*100*exp(-10*h*i);
     }
-//    // LU decompose the matrix
-//    ludcmp(Z,N,indx,&d);
-//    // Then backward substitution
-//    lubksb(Z, N, indx, b);
+
+    clock_t start_LU, finish_LU;
+    start_LU = clock();
+    // LU decompose the matrix
+    ludcmp(Z,N,indx,&d);
+    // Then backward substitution
+    lubksb(Z, N, indx, b);
+    finish_LU = clock();
+
+    cout << "Time LU: " << ((finish_LU-start_LU)/CLOCKS_PER_SEC)<<endl;
 
     // Free space
     delete [] b;

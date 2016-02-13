@@ -4,7 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    lib.cpp
+    ../../ComputationalPhysicsMSU/doc/Programs/LecturePrograms/programs/cppLibrary/lib.cpp
 
 HEADERS += \
-    lib.h
+    ../../ComputationalPhysicsMSU/doc/Programs/LecturePrograms/programs/cppLibrary/lib.h
