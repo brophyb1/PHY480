@@ -11,7 +11,7 @@
 
 \section{Abstract}
 
-In this project I will numerically solve the Poisson equation with Dirchelet boundary conditions by rewriting it as a set of linear equations. The Poisson equation is a second order differential equation, and here we discretize the equation into $N$ points and use an $h^2$ order approximation for the second derivative. The equation could be solved with standard LU decomposition with the order of $N^3$ operations, but here we implement the Thomas algorithm for systems with tridiagonal matrices to solve it on the order of $N$ flops. I further simplified the Thomas algorithm for the case that the off-diagonal elements of the tridiagonal matrix are all -1. The implementation of both methods show the Thomas Algorithm completes much faster, and produces a satisfactory solution to the Poisson equation.
+In this project I will numerically solve the Poisson equation with Dirichlet boundary conditions by rewriting it as a set of linear equations. The Poisson equation is a second order differential equation, and here we discretize the equation into $N$ points and use an $h^2$ order approximation for the second derivative. The equation could be solved with standard LU decomposition with the order of $N^3$ operations, but here we implement the Thomas algorithm for systems with tridiagonal matrices to solve it on the order of $N$ flops. I further simplified the Thomas algorithm for the case that the off-diagonal elements of the tridiagonal matrix are all -1. The implementation of both methods show the Thomas Algorithm completes much faster, and produces a satisfactory solution to the Poisson equation.
 
 \section{Introduction}
 The Poisson equation describes the electrostatic potential $\Phi$ from a charge distribution $\rho(\mathbf{r})$. For three dimensions it is:
@@ -113,6 +113,15 @@ So, it took about 1.44 hours to solve the problem with $N=10^4$. When I attempte
 \section{Conclusions}
 We were able to numerically solve the Poisson equation for the source function  $f(x)=100e^{-10x}$. The Thomas algorithm was successful in creating an accurate numerical model, and in Figure 1 we can see the numerical model approximates the analytical solution very nicely. As N increases, the error of the approximation decreases on the order of N. We also showed that the implementation of the Thomas Algorithm solved the equation much quicker than LU decomposition as N grew very large, as was expected. Solving the problem increased over 1000 times longer as the number of point increased by 10 times in the LU decomposition, while the Thomas Algorithm took less than a second to solve for at least 100000 points.
 
+\section{Bibliography}
+\begin{thebibliography}{widestlabel}
+	\bibitem{morten}
+	Hjorth-Jensen, M. (n.d.). Computational Physics Lectures: Linear Algebra methods. Retrieved from http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/linalg/pdf/linalg-minted.pdf
+\end{thebibliography}
+
+
+
+\section{Code}
 Here is the code used in this project, in C++:
 
 \begin{lstlisting}

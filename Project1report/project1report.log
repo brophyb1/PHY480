@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  4 MAY 2016 00:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  4 MAY 2016 13:49
 entering extended mode
 **project1report.tex
 (project1report.tex
@@ -178,64 +178,79 @@ File: variousNplots.png Graphic file (type png)
 Package pdftex.def Info: variousNplots.png used on input line 78.
 (pdftex.def)             Requested size: 360.0pt x 348.08302pt.
  [3] [4 <./variousNplots.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 121.
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
+[]\OT1/cmr/m/n/10.95 Hjorth-Jensen, M. (n.d.). Com-pu-ta-tional Physics
+ []
 
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
+\OT1/cmr/m/n/10.95 Lec-tures: Lin-ear Al-ge-bra meth-ods. Re-trieved from
+ []
+
+
+Overfull \hbox (115.56522pt too wide) in paragraph at lines 119--120
+\OT1/cmr/m/n/10.95 http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub
+/linalg/pdf/linalg-
+ []
+
+[5]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 130.
+
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 121.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 130.
 
-Overfull \hbox (264.1565pt too wide) in paragraph at lines 126--128
+Overfull \hbox (264.1565pt too wide) in paragraph at lines 135--137
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 129.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 138.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
 
-Overfull \hbox (80.19458pt too wide) in paragraph at lines 138--139
+Overfull \hbox (80.19458pt too wide) in paragraph at lines 147--148
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[5] [6]
-Overfull \hbox (99.90479pt too wide) in paragraph at lines 189--191
+[6]
+Overfull \hbox (99.90479pt too wide) in paragraph at lines 198--200
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [7]
-Overfull \hbox (80.19458pt too wide) in paragraph at lines 229--231
+Overfull \hbox (80.19458pt too wide) in paragraph at lines 238--240
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[8] (project1report.aux) ) 
+[8] [9] (project1report.aux) ) 
 Here is how much of TeX's memory you used:
- 2968 strings out of 493698
- 39720 string characters out of 3144418
- 123696 words of memory out of 3000000
- 6297 multiletter control sequences out of 15000+200000
+ 2969 strings out of 493698
+ 39728 string characters out of 3144418
+ 122699 words of memory out of 3000000
+ 6298 multiletter control sequences out of 15000+200000
  10023 words of font info for 36 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  27i,7n,32p,846b,1393s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb>
-Output written on project1report.pdf (8 pages, 155192 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex1
+0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmsy8.pfb>
+Output written on project1report.pdf (9 pages, 158026 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
