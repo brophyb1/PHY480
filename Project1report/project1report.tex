@@ -9,11 +9,29 @@
 \author{Benjamin Brophy}
 \maketitle
 
+\section{Abstract}
 
+In this project I will numerically solve the Poisson equation with Dirchelet boundary conditions by rewriting it as a set of linear equations. The Poisson equation is a second order differential equation, and here we discretize the equation into $N$ points and use an $h^2$ order approximation for the second derivative. The equation could be solved with standard LU decomposition with the order of $N^3$ operations, but here we implement the Thomas algorithm for systems with tridiagonal matrices to solve it on the order of $N$ flops. I further simplified the Thomas algorithm for the case that the off-diagonal elements of the tridiagonal matrix are all -1. The implementation of both methods show the Thomas Algorithm completes much faster, and produces a satisfactory solution to the Poisson equation.
 
-In this project I will numerically solve the Poisson equation with Dirchelet boundary conditions by rewriting it as a set of linear equations. I use the Thomas algorithm for solving a tridiagonal matrix, but simplified for the case that the off-diagonal elements of the tridiagonal matrix are all -1. I will first discuss the methods and results, and the code is included at the end of the report.
+\section{Introduction}
+The Poisson equation describes the electrostatic potential $\Phi$ from a charge distribution $\rho(\mathbf{r})$. For three dimensions it is:
+$$ \bigtriangledown^2\Phi = -4\pi \rho (\mathbf{r})$$
 
-We are solving the equation $-u''(x)=f(x)$ for $u(x)$, where $f(x)=100e^{-10x}$, on $x\in[0,1]$ with $u(0)=u(1)=0$. This is discretized to $n$ grid points $x_i=ih$ with spacing $h=\frac{1}{n+1}$. The discretized approximate of $u(x_i)$ is $v_i$. The $h^2$ order approximation of $f(x)$ is then $$\frac{-v_{i+1}+2v_i-v_{i+1}}{h^2}=f_i$$.
+For the spherically symmetric case, both the distribution and potential only depend on r, so we can write a one dimensional form:
+$$\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d\Phi}{dr}\right)=-4\pi\rho(r)$$
+
+Letting $\Phi(r) = \phi(r)/r$ we can rewrite this as 
+
+$$\frac{d^2\phi}{dr^2}=-4\pi r\rho(r)$$
+
+By function of $r$ on the right $f(r)=4\pi r\rho(r)$,  and letting $\phi \rightarrow u$ and $u \rightarrow x$, we obtain
+
+$$-u''(x)=f(x)$$
+
+In our case, we will take $f(x)=100e^{-10x}$ as our source function on $x\in[0,1]$ with $u(0)=u(1)=0$ as our boundary conditions.
+
+\section{Methods}
+We are solving the equation $-u''(x)=f(x)$ for $u(x)$, where $f(x)=100e^{-10x}$, on $x\in[0,1]$ with $u(0)=u(1)=0$. This is discretized to $N$ grid points $x_i=ih$ with spacing $h=\frac{1}{N+1}$. The discretized approximate of $u(x_i)$ is $v_i$. The $h^2$ order approximation of $f(x)$ is then $$\frac{-v_{i+1}+2v_i-v_{i+1}}{h^2}=f_i$$.
 Let $b_i\in\mathbf{b}$ be defined as $b_i=h^2f_i$. Then
 $$-v_{i+1}+2v_i-v_{i+1}=b_i$$
 $$\begin{matrix}
@@ -32,11 +50,11 @@ $$\begin{bmatrix}
 0&\cdots&\cdots&0&-1&2
 \end{bmatrix}
 \begin{bmatrix}
-v_1\\\cdots\\v_i\\\cdots\\v_n
+v_1\\\cdots\\v_i\\\cdots\\v_N
 \end{bmatrix}
 =
 \begin{bmatrix}
-b_1\\\cdots\\b_i\\\cdots\\b_n
+b_1\\\cdots\\b_i\\\cdots\\b_N
 \end{bmatrix}$$
 Thus,
 $$
@@ -46,15 +64,18 @@ $$
 To solve this matrix I will use a simplified version of Gaussian elimination for tridiagonal matrices called the Thomas algorithm, further simplified for the values of this tridiagonal matrix. The first step is forward substitution. After this step, all elements other than the diagonal and elements 1 to the right are 0, all values 1 right of the diagonal are -1, so we only need to compute the new diagonal values, $\tilde{d}_i$, and new values of the right hand side, $\tilde{b}_i$. ($\tilde{d}_1=d_1=2$, $\tilde{b}_1=b_1$)
 $$\tilde{d_i} = d_i - \frac{1}{\tilde{d}_{i-1}}$$
 $$\tilde{b_i} = b_i + \frac{\tilde{b}_{i-1}}{\tilde{d}_{i-1}}$$
-Then I completed backwards substitution to solve for $v_i$ with the following algorithms ($v_n=\tilde{b}_n$):
+Then I completed backwards substitution to solve for $v_i$ with the following algorithms ($v_N=\tilde{b}_N$):
 $$v_i=\frac{\tilde{b}_i+v_{i+1}}{\tilde{d}_i}$$
 
-General Gaussian Elimination or LU factorization solutions would take about $frac{2}{3}N^3$ flops to solve the equation. The Thomas algorithm would in general require about $4n$ flops for each forwards and backwards substitution for a total of $8n$ flops, but the simplified algorithm for this matrix reduces that to $2n$ flops for each forwards and backwards substitution, for a total of about $4n$ flops.
+
+General Gaussian Elimination or LU factorization solutions would take about $\frac{2}{3}N^3$ flops to solve the equation. The Thomas algorithm would in general require about $4N$ flops for each forwards and backwards substitution for a total of $8N$ flops, but the simplified algorithm for this matrix reduces that to $2N$ flops for each forwards and backwards substitution, for a total of about $4N$ flops.
+
+\section{Analysis}
 
 The resulting solutions for $N=10,100,1000,10000$ are plotted along with the analytical solution $u(x)=1-(1-exp(-10))x-exp(-10x)$ on the following page. The code used is at the end of the report. The solution is a rough but somewhat looking approximation at N=10, and as far as can be seen here, looks like a near perfect representation of the f(x) as n takes on values of 1000 and higher.
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{variousNplots.jpg}
+	\includegraphics[width=\linewidth]{variousNplots}
 	\caption{The solution is a rough but somewhat looking approximation at N=10, and as far as can be seen here, looks like a near perfect representation of the f(x) as n takes on values of 1000 and higher.}
 \end{figure}
 
@@ -63,29 +84,34 @@ $$\epsilon_i=log_{10}\bigg(\bigg|\frac{[v_i-u_i]}{u_i}\bigg|\bigg)$$
 Here are is the maximum error at any point $x_i$ for each $N$. The error seems to decrease about as the increase in the order of magnitude of N.
 
 $$
-\begin{matrix}
+\begin{array}{|c|c|}
 \mathbf{N} & \mathbf{Max Error}\\
+\hline
 10 & 0.301744\\
 100 & 0.0374884\\
 1000 & 0.00384884\\
 10000 & 0.000385926
-\end{matrix}
+\end{array}
 $$
 
 When measuring the time for various my solver using "time.h" in C++, even for $N=10^5$, the solution did not take long enough to register on a scale of seconds. My solver performs on the order of $N$ flops. However, LU decomposition takes on the order of $N^3$ flops. Here are the results of my measurement of solving using LU decomposition.
 
 $$
-\begin{matrix}
+\begin{array}{|c|c|}
 \mathbf{N} & \mathbf{Time (s)}\\
+\hline
 10 & 0\\
 100 & 0\\
 1000 & 2\\
 10000 & 5194\\
 100000 & N/A
-\end{matrix}
+\end{array}
 $$
 
 So, it took about 1.44 hours to solve the problem with $N=10^4$. When I attempted to solve the $N=10^5$ matrix using LU decomposition, it never finished in hours, which makes sense since it should take on the order of $10^3$ longer than the solution of the $N=10^4$ case.
+
+\section{Conclusions}
+We were able to numerically solve the Poisson equation for the source function  $f(x)=100e^{-10x}$. The Thomas algorithm was successful in creating an accurate numerical model, and in Figure 1 we can see the numerical model approximates the analytical solution very nicely. As N increases, the error of the approximation decreases on the order of N. We also showed that the implementation of the Thomas Algorithm solved the equation much quicker than LU decomposition as N grew very large, as was expected. Solving the problem increased over 1000 times longer as the number of point increased by 10 times in the LU decomposition, while the Thomas Algorithm took less than a second to solve for at least 100000 points.
 
 Here is the code used in this project, in C++:
 
