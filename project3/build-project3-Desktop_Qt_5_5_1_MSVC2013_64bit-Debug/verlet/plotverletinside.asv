@@ -1,0 +1,4 @@
+A = csvread('sysEarthverlet.csv');
+B = csvread('sysJupiterverlet.csv');
+C = csvread('sysSunverlet.csv');
+plot(A(:,2),A(:,4),'b',B(:,2),B(:,4),'g',C(:,2),C(:,4),'r')

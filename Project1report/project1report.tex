@@ -62,10 +62,10 @@ $$
 $$
 
 To solve this matrix I will use a simplified version of Gaussian elimination for tridiagonal matrices called the Thomas algorithm, further simplified for the values of this tridiagonal matrix. The first step is forward substitution. After this step, all elements other than the diagonal and elements 1 to the right are 0, all values 1 right of the diagonal are -1, so we only need to compute the new diagonal values, $\tilde{d}_i$, and new values of the right hand side, $\tilde{b}_i$. ($\tilde{d}_1=d_1=2$, $\tilde{b}_1=b_1$)
-$$\tilde{d_i} = d_i - \frac{1}{\tilde{d}_{i-1}}$$
-$$\tilde{b_i} = b_i + \frac{\tilde{b}_{i-1}}{\tilde{d}_{i-1}}$$
+$$\tilde{b_i} = b_i - \frac{a_ic_{i-1}}{\tilde{b}_{i-1}}$$
+$$\tilde{d_i} = d_i - \frac{a_{i-1}\tilde{d}_{i-1}}{\tilde{b}_{i-1}}$$
 Then I completed backwards substitution to solve for $v_i$ with the following algorithms ($v_N=\tilde{b}_N$):
-$$v_i=\frac{\tilde{b}_i+v_{i+1}}{\tilde{d}_i}$$
+$$x_i=\frac{\tilde{d}_i-c_ix_{i+1}}{\tilde{b}_i}$$
 
 
 General Gaussian Elimination or LU factorization solutions would take about $\frac{2}{3}N^3$ flops to solve the equation. The Thomas algorithm would in general require about $4N$ flops for each forwards and backwards substitution for a total of $8N$ flops, but the simplified algorithm for this matrix reduces that to $2N$ flops for each forwards and backwards substitution, for a total of about $4N$ flops.

@@ -35,7 +35,7 @@ int main()
     }
 
     // backward substitution
-    double *X = new double[N];;
+    double *X = new double[N];
     X[N-1] = B[N-1]/A[N-1];
     for(i=1 ; i < N ; i++) {
         X[N-1-i]=(B[N-1-i]+X[N-i])/A[N-1-i];
